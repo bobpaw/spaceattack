@@ -1,0 +1,5 @@
+autoscan: warning: missing AC_CHECK_FUNCS([strtol]) wanted by: 
+	cmdline.c:380
+autoscan: warning: missing AC_FUNC_MALLOC wanted by: 
+	cmdline.c:152
+	cmdline.c:251

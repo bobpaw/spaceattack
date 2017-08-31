@@ -18,6 +18,7 @@
     If you have any questions, please email me at <aidenpw@hotmail.com>.
 */
 
+#include "config.h"
 //#include <time.h>
 #include <stdlib.h> // exit, EXIT_SUCCESS, EXIT_FAILURE
 
@@ -30,7 +31,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#ifndef HAVE_LIBSDL2_MIXER
+#print Not technically required
+#else
 #include <SDL2/SDL_mixer.h>
+#endif
 
-#include "config.h"
 #include "entity.h"

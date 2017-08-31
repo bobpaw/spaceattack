@@ -1,11 +1,37 @@
-AC_INIT([SpaceAttack],[1.0],[aidenpw@hotmail.com])
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([SpaceAttack], [2.0], [aidenpw@hotmail.com])
+AC_CONFIG_SRCDIR([main.cc])
 AC_CONFIG_HEADERS([config.h])
-AC_CHECK_HEADERS([stdlib.h])
-AC_CHECK_HEADER_STDBOOL
-AC_TYPE_UINT8_T
-AC_C_INLINE
-AM_INIT_AUTOMAKE
-AC_PROG_CC
+
+# Checks for programs.
 AC_PROG_CXX
+AC_PROG_CC
+
+# Checks for libraries.
+# FIXME: Replace `main' with a function in `-lSDL2':
+AC_CHECK_LIB([SDL2], [SDL_Init])
+# FIXME: Replace `main' with a function in `-lSDL2_image':
+AC_CHECK_LIB([SDL2_image], [IMG_Init])
+# FIXME: Replace `main' with a function in `-lSDL2_mixer':
+AC_CHECK_LIB([SDL2_mixer], [main])
+# FIXME: Replace `main' with a function in `-lSDL2_ttf':
+AC_CHECK_LIB([SDL2_ttf], [main])
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdlib.h string.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_C_INLINE
+AC_TYPE_UINT8_T
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([strtol])
+
 AC_CONFIG_FILES([Makefile])
+AM_INIT_AUTOMAKE
 AC_OUTPUT

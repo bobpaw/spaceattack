@@ -1,4 +1,4 @@
-movinga-main.o: main.cc /usr/include/stdc-predef.h main.h \
+movinga-main.o: main.cc /usr/include/stdc-predef.h main.h config.h \
  /usr/include/c++/6/stdlib.h /usr/include/c++/6/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/6/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/6/bits/os_defines.h \
@@ -151,12 +151,14 @@ movinga-main.o: main.cc /usr/include/stdc-predef.h main.h \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_ttf.h /usr/include/SDL2/SDL_mixer.h config.h \
- entity.h cmdline.h
+ /usr/include/SDL2/SDL_ttf.h /usr/include/SDL2/SDL_mixer.h entity.h \
+ cmdline.h
 
 /usr/include/stdc-predef.h:
 
 main.h:
+
+config.h:
 
 /usr/include/c++/6/stdlib.h:
 
@@ -595,8 +597,6 @@ main.h:
 /usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/SDL2/SDL_mixer.h:
-
-config.h:
 
 entity.h:
 
