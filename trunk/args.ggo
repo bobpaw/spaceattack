@@ -1,0 +1,2 @@
+option "stars" s "Specify number of stars" typestr="stars" int optional
+option "use-arrows" a "Use arrows; if off, use WASD" flag on

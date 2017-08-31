@@ -19,7 +19,7 @@
 */
 
 //#include <time.h>
-//#include <stdlib.h> // rand
+#include <stdlib.h> // exit, EXIT_SUCCESS, EXIT_FAILURE
 
 #include <iostream> // std::cout
 #include <string> // std::string type

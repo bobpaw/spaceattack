@@ -19,13 +19,33 @@
 */
 
 #include "main.h"
+#include "cmdline.h"
 
 const int kScreenWidth = 640;
 const int kScreenHeight = 400;
-const int kNumStars = 300; // 150 of each type
 const int kMaxBombs = 5; // Max number of fireable bombs
 
 int main (int argc, char * argv[]) {
+  int kNumStars = 300; // 150 of each type by default
+  int UPKEY;
+  int DOWNKEY;
+  int LEFTKEY;
+  int RIGHTKEY;
+  gengetopt_args_info args_info;
+  if (cmdline_parser(argc, argv, &args_info) != 0) exit(EXIT_FAILURE);
+  if (args_info.stars_given) kNumStars = args_info.stars_arg;
+  if (args_info.use_arrows_flag) {
+    UPKEY = SDL_SCANCODE_UP;
+    DOWNKEY = SDL_SCANCODE_DOWN;
+    LEFTKEY = SDL_SCANCODE_LEFT;
+    RIGHTKEY = SDL_SCANCODE_RIGHT;
+  } else {
+    UPKEY = SDL_SCANCODE_W;
+    DOWNKEY = SDL_SCANCODE_S;
+    LEFTKEY = SDL_SCANCODE_A;
+    RIGHTKEY = SDL_SCANCODE_D;
+  }
+  cmdline_parser_free(&args_info);
   std::random_device random;
   SDL_Window * graphics_window = nullptr; // Window object
   SDL_Renderer * graphics_renderer = nullptr; // Surface of screen
@@ -83,19 +103,19 @@ int main (int argc, char * argv[]) {
 	window_quit = true;
       }
     }
-    if (key_state[SDL_SCANCODE_UP] && !key_state[SDL_SCANCODE_DOWN]) {
+    if (key_state[UPKEY] && !key_state[DOWNKEY]) {
       // Get state of Up arrow key
       ship->Move(0, -velocity);
-    } else if (!key_state[SDL_SCANCODE_UP] && key_state[SDL_SCANCODE_DOWN]) {
+    } else if (!key_state[UPKEY] && key_state[DOWNKEY]) {
       ship->Move(0, velocity);
-    } else if (key_state[SDL_SCANCODE_UP] && key_state[SDL_SCANCODE_DOWN]) {
+    } else if (key_state[UPKEY] && key_state[DOWNKEY]) {
 
     }
-    if (key_state[SDL_SCANCODE_LEFT] && key_state[SDL_SCANCODE_RIGHT]) {
+    if (key_state[LEFTKEY] && key_state[RIGHTKEY]) {
 
-    } else if (key_state[SDL_SCANCODE_LEFT] && !key_state[SDL_SCANCODE_RIGHT]) {
+    } else if (key_state[LEFTKEY] && !key_state[RIGHTKEY]) {
       ship->Move(-velocity, 0);
-    } else if (!key_state[SDL_SCANCODE_LEFT] && key_state[SDL_SCANCODE_RIGHT]) {
+    } else if (!key_state[LEFTKEY] && key_state[RIGHTKEY]) {
       ship->Move(velocity, 0);
     }
     if (key_state[SDL_SCANCODE_SPACE] && bombLag == 0) {
