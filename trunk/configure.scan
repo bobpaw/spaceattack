@@ -1,0 +1,34 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([entity.h])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+
+# Checks for libraries.
+# FIXME: Replace `main' with a function in `-lSDL2':
+AC_CHECK_LIB([SDL2], [main])
+# FIXME: Replace `main' with a function in `-lSDL2_image':
+AC_CHECK_LIB([SDL2_image], [main])
+# FIXME: Replace `main' with a function in `-lSDL2_mixer':
+AC_CHECK_LIB([SDL2_mixer], [main])
+# FIXME: Replace `main' with a function in `-lSDL2_ttf':
+AC_CHECK_LIB([SDL2_ttf], [main])
+
+# Checks for header files.
+AC_CHECK_HEADERS([stdlib.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_C_INLINE
+AC_TYPE_UINT8_T
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
