@@ -236,7 +236,7 @@ AM_DEFAULT_VERBOSITY = 1
 AUTOCONF = ${SHELL} /home/bobpaw/spaceattack/missing autoconf
 AUTOHEADER = ${SHELL} /home/bobpaw/spaceattack/missing autoheader
 AUTOMAKE = ${SHELL} /home/bobpaw/spaceattack/missing automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
