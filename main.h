@@ -38,3 +38,4 @@
 #endif
 
 #include "entity.h"
+#include "text.h"
