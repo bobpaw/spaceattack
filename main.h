@@ -19,12 +19,10 @@
 */
 
 #include "config.h"
-//#include <time.h>
-#include <stdlib.h> // exit, EXIT_SUCCESS, EXIT_FAILURE
 
 #include <iostream> // std::cout
 #include <string> // std::string type
-#include <sstream>
+// #include <sstream>
 #include <vector> // std::vector container type
 #include <random>
 
