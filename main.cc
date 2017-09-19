@@ -65,6 +65,7 @@ int main (int argc, char * argv[]) {
   SDL_Window * graphics_window = nullptr; // Window object
   SDL_Renderer * graphics_renderer = nullptr; // Surface of screen
   Entity ship("ship.png"); // Construct ship entity
+  Entity enemy("enemy.png"); // Enemy ship
   std::vector<SDL_Rect> bombs(kMaxBombs);
   std::vector<bool> bomb_exist(kMaxBombs);
   int bombAmmo = kMaxBombs;
@@ -94,6 +95,7 @@ int main (int argc, char * argv[]) {
   y_start = bombs_text[1].pos_.h;
   SDL_SetRenderDrawColor(graphics_renderer, 0x00, 0x00, 0x00, 0xff);
   ship.LoadImage(graphics_renderer, y_start); // Load ship image into memory
+  enemy.LoadImage(graphics_renderer);
   bombsprite.LoadImage(graphics_renderer);
   star1sprite.LoadImage(graphics_renderer); // Load star1 image into memory
   star2sprite.LoadImage(graphics_renderer); // Load star2 image into memory
@@ -108,6 +110,7 @@ int main (int argc, char * argv[]) {
   for (int i = 0; i < 5; i++) {
     bombs[i] = bombsprite.pos_;
   }
+  enemy.RePos(320, 200);
   while (window_quit == false) {
     while (SDL_PollEvent( &event ) != 0) { // SDL_PollEvent automatically updates key_state array
       if (event.type == SDL_QUIT) {
@@ -174,6 +177,7 @@ int main (int argc, char * argv[]) {
       }
     }
     if (bombLag > 0) bombLag--;
+    enemy.Display(graphics_renderer);
     ship.Display(graphics_renderer); // Call entity::display() function for ship
     SDL_RenderPresent(graphics_renderer); // Update screen based on changes
     SDL_Delay(20); // Wait 20 milliseconds, should blip 50 fps
