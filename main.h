@@ -28,9 +28,6 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#ifndef HAVE_LIBSDL2_TTF
-#print Not technically required yet
-#else
 #include <SDL2/SDL_ttf.h>
 #endif
 #ifndef HAVE_LIBSDL2_MIXER
