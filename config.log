@@ -38,18 +38,31 @@ PATH: /usr/games
 ## Core tests. ##
 ## ----------- ##
 
-configure:2375: checking for g++
-configure:2391: found /usr/bin/g++
-configure:2402: result: g++
-configure:2429: checking for C++ compiler version
-configure:2438: g++ --version >&5
+configure:2357: checking for a BSD-compatible install
+configure:2425: result: /usr/bin/install -c
+configure:2436: checking whether build environment is sane
+configure:2491: result: yes
+configure:2642: checking for a thread-safe mkdir -p
+configure:2681: result: /bin/mkdir -p
+configure:2688: checking for gawk
+configure:2704: found /usr/bin/gawk
+configure:2715: result: gawk
+configure:2726: checking whether make sets $(MAKE)
+configure:2748: result: yes
+configure:2777: checking whether make supports nested variables
+configure:2794: result: yes
+configure:2983: checking for g++
+configure:2999: found /usr/bin/g++
+configure:3010: result: g++
+configure:3037: checking for C++ compiler version
+configure:3046: g++ --version >&5
 g++ (Debian 6.3.0-18) 6.3.0 20170516
 Copyright (C) 2016 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-configure:2449: $? = 0
-configure:2438: g++ -v >&5
+configure:3057: $? = 0
+configure:3046: g++ -v >&5
 Using built-in specs.
 COLLECT_GCC=g++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/6/lto-wrapper
@@ -57,57 +70,61 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Debian 6.3.0-18' --with-bugurl=file:///usr/share/doc/gcc-6/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-6 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-6-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-6-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-6-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
 gcc version 6.3.0 20170516 (Debian 6.3.0-18) 
-configure:2449: $? = 0
-configure:2438: g++ -V >&5
+configure:3057: $? = 0
+configure:3046: g++ -V >&5
 g++: error: unrecognized command line option '-V'
 g++: fatal error: no input files
 compilation terminated.
-configure:2449: $? = 1
-configure:2438: g++ -qversion >&5
+configure:3057: $? = 1
+configure:3046: g++ -qversion >&5
 g++: error: unrecognized command line option '-qversion'; did you mean '--version'?
 g++: fatal error: no input files
 compilation terminated.
-configure:2449: $? = 1
-configure:2469: checking whether the C++ compiler works
-configure:2491: g++    conftest.cpp  >&5
-configure:2495: $? = 0
-configure:2543: result: yes
-configure:2546: checking for C++ compiler default output file name
-configure:2548: result: a.out
-configure:2554: checking for suffix of executables
-configure:2561: g++ -o conftest    conftest.cpp  >&5
-configure:2565: $? = 0
-configure:2587: result: 
-configure:2609: checking whether we are cross compiling
-configure:2617: g++ -o conftest    conftest.cpp  >&5
-configure:2621: $? = 0
-configure:2628: ./conftest
-configure:2632: $? = 0
-configure:2647: result: no
-configure:2652: checking for suffix of object files
-configure:2674: g++ -c   conftest.cpp >&5
-configure:2678: $? = 0
-configure:2699: result: o
-configure:2703: checking whether we are using the GNU C++ compiler
-configure:2722: g++ -c   conftest.cpp >&5
-configure:2722: $? = 0
-configure:2731: result: yes
-configure:2740: checking whether g++ accepts -g
-configure:2760: g++ -c -g  conftest.cpp >&5
-configure:2760: $? = 0
-configure:2801: result: yes
-configure:2872: checking for gcc
-configure:2888: found /usr/bin/gcc
-configure:2899: result: gcc
-configure:3128: checking for C compiler version
-configure:3137: gcc --version >&5
+configure:3057: $? = 1
+configure:3077: checking whether the C++ compiler works
+configure:3099: g++    conftest.cpp  >&5
+configure:3103: $? = 0
+configure:3151: result: yes
+configure:3154: checking for C++ compiler default output file name
+configure:3156: result: a.out
+configure:3162: checking for suffix of executables
+configure:3169: g++ -o conftest    conftest.cpp  >&5
+configure:3173: $? = 0
+configure:3195: result: 
+configure:3217: checking whether we are cross compiling
+configure:3225: g++ -o conftest    conftest.cpp  >&5
+configure:3229: $? = 0
+configure:3236: ./conftest
+configure:3240: $? = 0
+configure:3255: result: no
+configure:3260: checking for suffix of object files
+configure:3282: g++ -c   conftest.cpp >&5
+configure:3286: $? = 0
+configure:3307: result: o
+configure:3311: checking whether we are using the GNU C++ compiler
+configure:3330: g++ -c   conftest.cpp >&5
+configure:3330: $? = 0
+configure:3339: result: yes
+configure:3348: checking whether g++ accepts -g
+configure:3368: g++ -c -g  conftest.cpp >&5
+configure:3368: $? = 0
+configure:3409: result: yes
+configure:3443: checking for style of include used by make
+configure:3471: result: GNU
+configure:3497: checking dependency style of g++
+configure:3608: result: gcc3
+configure:3671: checking for gcc
+configure:3687: found /usr/bin/gcc
+configure:3698: result: gcc
+configure:3927: checking for C compiler version
+configure:3936: gcc --version >&5
 gcc (Debian 6.3.0-18) 6.3.0 20170516
 Copyright (C) 2016 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-configure:3148: $? = 0
-configure:3137: gcc -v >&5
+configure:3947: $? = 0
+configure:3936: gcc -v >&5
 Using built-in specs.
 COLLECT_GCC=gcc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/6/lto-wrapper
@@ -115,60 +132,62 @@ Target: x86_64-linux-gnu
 Configured with: ../src/configure -v --with-pkgversion='Debian 6.3.0-18' --with-bugurl=file:///usr/share/doc/gcc-6/README.Bugs --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-6 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-6-amd64/jre --enable-java-home --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-6-amd64 --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-6-amd64 --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
 gcc version 6.3.0 20170516 (Debian 6.3.0-18) 
-configure:3148: $? = 0
-configure:3137: gcc -V >&5
+configure:3947: $? = 0
+configure:3936: gcc -V >&5
 gcc: error: unrecognized command line option '-V'
 gcc: fatal error: no input files
 compilation terminated.
-configure:3148: $? = 1
-configure:3137: gcc -qversion >&5
+configure:3947: $? = 1
+configure:3936: gcc -qversion >&5
 gcc: error: unrecognized command line option '-qversion'; did you mean '--version'?
 gcc: fatal error: no input files
 compilation terminated.
-configure:3148: $? = 1
-configure:3152: checking whether we are using the GNU C compiler
-configure:3171: gcc -c   conftest.c >&5
-configure:3171: $? = 0
-configure:3180: result: yes
-configure:3189: checking whether gcc accepts -g
-configure:3209: gcc -c -g  conftest.c >&5
-configure:3209: $? = 0
-configure:3250: result: yes
-configure:3267: checking for gcc option to accept ISO C89
-configure:3330: gcc  -c -g -O2  conftest.c >&5
-configure:3330: $? = 0
-configure:3343: result: none needed
-configure:3400: checking whether gcc understands -c and -o together
-configure:3422: gcc -c conftest.c -o conftest2.o
-configure:3425: $? = 0
-configure:3422: gcc -c conftest.c -o conftest2.o
-configure:3425: $? = 0
-configure:3437: result: yes
-configure:3458: checking for SDL_Init in -lSDL2
-configure:3483: gcc -o conftest -g -O2   conftest.c -lSDL2   >&5
-configure:3483: $? = 0
-configure:3492: result: yes
-configure:3504: checking for IMG_Init in -lSDL2_image
-configure:3529: gcc -o conftest -g -O2   conftest.c -lSDL2_image  -lSDL2  >&5
-configure:3529: $? = 0
-configure:3538: result: yes
-configure:3550: checking for main in -lSDL2_mixer
-configure:3569: gcc -o conftest -g -O2   conftest.c -lSDL2_mixer  -lSDL2_image -lSDL2  >&5
-configure:3569: $? = 0
-configure:3578: result: yes
-configure:3590: checking for main in -lSDL2_ttf
-configure:3609: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf  -lSDL2_mixer -lSDL2_image -lSDL2  >&5
-configure:3609: $? = 0
-configure:3618: result: yes
-configure:3636: checking how to run the C preprocessor
-configure:3667: gcc -E  conftest.c
-configure:3667: $? = 0
-configure:3681: gcc -E  conftest.c
-conftest.c:13:28: fatal error: ac_nonexistent.h: No such file or directory
+configure:3947: $? = 1
+configure:3951: checking whether we are using the GNU C compiler
+configure:3970: gcc -c   conftest.c >&5
+configure:3970: $? = 0
+configure:3979: result: yes
+configure:3988: checking whether gcc accepts -g
+configure:4008: gcc -c -g  conftest.c >&5
+configure:4008: $? = 0
+configure:4049: result: yes
+configure:4066: checking for gcc option to accept ISO C89
+configure:4129: gcc  -c -g -O2  conftest.c >&5
+configure:4129: $? = 0
+configure:4142: result: none needed
+configure:4167: checking whether gcc understands -c and -o together
+configure:4189: gcc -c conftest.c -o conftest2.o
+configure:4192: $? = 0
+configure:4189: gcc -c conftest.c -o conftest2.o
+configure:4192: $? = 0
+configure:4204: result: yes
+configure:4223: checking dependency style of gcc
+configure:4334: result: gcc3
+configure:4353: checking for SDL_Init in -lSDL2
+configure:4378: gcc -o conftest -g -O2   conftest.c -lSDL2   >&5
+configure:4378: $? = 0
+configure:4387: result: yes
+configure:4399: checking for IMG_Init in -lSDL2_image
+configure:4424: gcc -o conftest -g -O2   conftest.c -lSDL2_image  -lSDL2  >&5
+configure:4424: $? = 0
+configure:4433: result: yes
+configure:4445: checking for main in -lSDL2_mixer
+configure:4464: gcc -o conftest -g -O2   conftest.c -lSDL2_mixer  -lSDL2_image -lSDL2  >&5
+configure:4464: $? = 0
+configure:4473: result: yes
+configure:4485: checking for TTF_Init in -lSDL2_ttf
+configure:4510: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf  -lSDL2_mixer -lSDL2_image -lSDL2  >&5
+configure:4510: $? = 0
+configure:4519: result: yes
+configure:4537: checking how to run the C preprocessor
+configure:4568: gcc -E  conftest.c
+configure:4568: $? = 0
+configure:4582: gcc -E  conftest.c
+conftest.c:15:28: fatal error: ac_nonexistent.h: No such file or directory
  #include <ac_nonexistent.h>
                             ^
 compilation terminated.
-configure:3681: $? = 1
+configure:4582: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "SpaceAttack"
@@ -177,21 +196,23 @@ configure: failed program was:
 | #define PACKAGE_STRING "SpaceAttack 2.0"
 | #define PACKAGE_BUGREPORT "aidenpw@hotmail.com"
 | #define PACKAGE_URL ""
+| #define PACKAGE "spaceattack"
+| #define VERSION "2.0"
 | #define HAVE_LIBSDL2 1
 | #define HAVE_LIBSDL2_IMAGE 1
 | #define HAVE_LIBSDL2_MIXER 1
 | #define HAVE_LIBSDL2_TTF 1
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
-configure:3706: result: gcc -E
-configure:3726: gcc -E  conftest.c
-configure:3726: $? = 0
-configure:3740: gcc -E  conftest.c
-conftest.c:13:28: fatal error: ac_nonexistent.h: No such file or directory
+configure:4607: result: gcc -E
+configure:4627: gcc -E  conftest.c
+configure:4627: $? = 0
+configure:4641: gcc -E  conftest.c
+conftest.c:15:28: fatal error: ac_nonexistent.h: No such file or directory
  #include <ac_nonexistent.h>
                             ^
 compilation terminated.
-configure:3740: $? = 1
+configure:4641: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "SpaceAttack"
@@ -200,77 +221,79 @@ configure: failed program was:
 | #define PACKAGE_STRING "SpaceAttack 2.0"
 | #define PACKAGE_BUGREPORT "aidenpw@hotmail.com"
 | #define PACKAGE_URL ""
+| #define PACKAGE "spaceattack"
+| #define VERSION "2.0"
 | #define HAVE_LIBSDL2 1
 | #define HAVE_LIBSDL2_IMAGE 1
 | #define HAVE_LIBSDL2_MIXER 1
 | #define HAVE_LIBSDL2_TTF 1
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
-configure:3769: checking for grep that handles long lines and -e
-configure:3827: result: /bin/grep
-configure:3832: checking for egrep
-configure:3894: result: /bin/grep -E
-configure:3899: checking for ANSI C header files
-configure:3919: gcc -c -g -O2  conftest.c >&5
-configure:3919: $? = 0
-configure:3992: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
-configure:3992: $? = 0
-configure:3992: ./conftest
-configure:3992: $? = 0
-configure:4003: result: yes
-configure:4016: checking for sys/types.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for sys/stat.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for stdlib.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for string.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for memory.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for strings.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for inttypes.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for stdint.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4016: checking for unistd.h
-configure:4016: gcc -c -g -O2  conftest.c >&5
-configure:4016: $? = 0
-configure:4016: result: yes
-configure:4031: checking for stdlib.h
-configure:4031: result: yes
-configure:4031: checking for string.h
-configure:4031: result: yes
-configure:4043: checking for stdbool.h that conforms to C99
-configure:4110: gcc -c -g -O2  conftest.c >&5
-configure:4110: $? = 0
-configure:4117: result: yes
-configure:4119: checking for _Bool
-configure:4119: gcc -c -g -O2  conftest.c >&5
-configure:4119: $? = 0
-configure:4119: gcc -c -g -O2  conftest.c >&5
+configure:4670: checking for grep that handles long lines and -e
+configure:4728: result: /bin/grep
+configure:4733: checking for egrep
+configure:4795: result: /bin/grep -E
+configure:4800: checking for ANSI C header files
+configure:4820: gcc -c -g -O2  conftest.c >&5
+configure:4820: $? = 0
+configure:4893: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
+configure:4893: $? = 0
+configure:4893: ./conftest
+configure:4893: $? = 0
+configure:4904: result: yes
+configure:4917: checking for sys/types.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for sys/stat.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for stdlib.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for string.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for memory.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for strings.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for inttypes.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for stdint.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4917: checking for unistd.h
+configure:4917: gcc -c -g -O2  conftest.c >&5
+configure:4917: $? = 0
+configure:4917: result: yes
+configure:4932: checking for stdlib.h
+configure:4932: result: yes
+configure:4932: checking for string.h
+configure:4932: result: yes
+configure:4944: checking for stdbool.h that conforms to C99
+configure:5011: gcc -c -g -O2  conftest.c >&5
+configure:5011: $? = 0
+configure:5018: result: yes
+configure:5020: checking for _Bool
+configure:5020: gcc -c -g -O2  conftest.c >&5
+configure:5020: $? = 0
+configure:5020: gcc -c -g -O2  conftest.c >&5
 conftest.c: In function 'main':
-conftest.c:61:20: error: expected expression before ')' token
+conftest.c:63:20: error: expected expression before ')' token
  if (sizeof ((_Bool)))
                     ^
-configure:4119: $? = 1
+configure:5020: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "SpaceAttack"
@@ -279,6 +302,8 @@ configure: failed program was:
 | #define PACKAGE_STRING "SpaceAttack 2.0"
 | #define PACKAGE_BUGREPORT "aidenpw@hotmail.com"
 | #define PACKAGE_URL ""
+| #define PACKAGE "spaceattack"
+| #define VERSION "2.0"
 | #define HAVE_LIBSDL2 1
 | #define HAVE_LIBSDL2_IMAGE 1
 | #define HAVE_LIBSDL2_MIXER 1
@@ -337,49 +362,30 @@ configure: failed program was:
 |   ;
 |   return 0;
 | }
-configure:4119: result: yes
-configure:4130: checking for inline
-configure:4146: gcc -c -g -O2  conftest.c >&5
-configure:4146: $? = 0
-configure:4154: result: inline
-configure:4172: checking for uint8_t
-configure:4172: gcc -c -g -O2  conftest.c >&5
-configure:4172: $? = 0
-configure:4172: result: yes
-configure:4190: checking for stdlib.h
-configure:4190: result: yes
-configure:4200: checking for GNU libc compatible malloc
-configure:4224: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
-configure:4224: $? = 0
-configure:4224: ./conftest
-configure:4224: $? = 0
-configure:4234: result: yes
-configure:4257: checking for strtol
-configure:4257: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
-configure:4257: $? = 0
-configure:4257: result: yes
-configure:4285: checking for a BSD-compatible install
-configure:4353: result: /usr/bin/install -c
-configure:4364: checking whether build environment is sane
-configure:4419: result: yes
-configure:4567: checking for a thread-safe mkdir -p
-configure:4606: result: /bin/mkdir -p
-configure:4613: checking for gawk
-configure:4629: found /usr/bin/gawk
-configure:4640: result: gawk
-configure:4651: checking whether make sets $(MAKE)
-configure:4673: result: yes
-configure:4703: checking for style of include used by make
-configure:4731: result: GNU
-configure:4765: checking whether make supports nested variables
-configure:4782: result: yes
-configure:4867: checking dependency style of gcc
-configure:4978: result: gcc3
-configure:4995: checking dependency style of g++
-configure:5106: result: gcc3
-configure:5273: checking that generated files are newer than configure
-configure:5279: result: done
-configure:5306: creating ./config.status
+configure:5020: result: yes
+configure:5031: checking for inline
+configure:5047: gcc -c -g -O2  conftest.c >&5
+configure:5047: $? = 0
+configure:5055: result: inline
+configure:5073: checking for uint8_t
+configure:5073: gcc -c -g -O2  conftest.c >&5
+configure:5073: $? = 0
+configure:5073: result: yes
+configure:5091: checking for stdlib.h
+configure:5091: result: yes
+configure:5101: checking for GNU libc compatible malloc
+configure:5125: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
+configure:5125: $? = 0
+configure:5125: ./conftest
+configure:5125: $? = 0
+configure:5135: result: yes
+configure:5158: checking for strtol
+configure:5158: gcc -o conftest -g -O2   conftest.c -lSDL2_ttf -lSDL2_mixer -lSDL2_image -lSDL2  >&5
+configure:5158: $? = 0
+configure:5158: result: yes
+configure:5279: checking that generated files are newer than configure
+configure:5285: result: done
+configure:5312: creating ./config.status
 
 ## ---------------------- ##
 ## Running config.status. ##
@@ -449,7 +455,7 @@ ac_cv_header_unistd_h=yes
 ac_cv_lib_SDL2_SDL_Init=yes
 ac_cv_lib_SDL2_image_IMG_Init=yes
 ac_cv_lib_SDL2_mixer_main=yes
-ac_cv_lib_SDL2_ttf_main=yes
+ac_cv_lib_SDL2_ttf_TTF_Init=yes
 ac_cv_objext=o
 ac_cv_path_EGREP='/bin/grep -E'
 ac_cv_path_GREP=/bin/grep
@@ -581,6 +587,8 @@ target_alias=''
 #define PACKAGE_STRING "SpaceAttack 2.0"
 #define PACKAGE_BUGREPORT "aidenpw@hotmail.com"
 #define PACKAGE_URL ""
+#define PACKAGE "spaceattack"
+#define VERSION "2.0"
 #define HAVE_LIBSDL2 1
 #define HAVE_LIBSDL2_IMAGE 1
 #define HAVE_LIBSDL2_MIXER 1
@@ -601,25 +609,5 @@ target_alias=''
 #define HAVE_STDLIB_H 1
 #define HAVE_MALLOC 1
 #define HAVE_STRTOL 1
-#define PACKAGE "spaceattack"
-#define VERSION "2.0"
 
 configure: exit 0
-
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
-
-This file was extended by SpaceAttack config.status 2.0, which was
-generated by GNU Autoconf 2.69.  Invocation command line was
-
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status config.h
-
-on teneco
-
-config.status:869: creating config.h
-config.status:1050: config.h is unchanged

@@ -26,7 +26,22 @@ const int kScreenHeight = 400;
 const int kMaxBombs = 5; // Max number of fireable bombs
 
 int main (int argc, char * argv[]) {
+  if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    std::cerr << "SDL couldn't initialize! SDL_ERROR: " << SDL_GetError() << std::endl;
+    return -1;
+  }
+  if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+    std::cerr << "SDL_Image couldn't init!" << std::endl;
+    return -1;
+  }
+  if (TTF_Init() == -1) {
+    std::cerr << "SDL_ttf could not initialize. SDL_ttf error: " << TTF_GetError() << std::endl;
+    return -1;
+  }
+  TTF_Font * font = nullptr;
+  font = TTF_OpenFont("truetype/freefont/FreeSerif.ttf", 16);
   int kNumStars = 300; // 150 of each type by default
+  int y_start = 0;
   int UPKEY;
   int DOWNKEY;
   int LEFTKEY;
@@ -49,24 +64,7 @@ int main (int argc, char * argv[]) {
   std::random_device random;
   SDL_Window * graphics_window = nullptr; // Window object
   SDL_Renderer * graphics_renderer = nullptr; // Surface of screen
-  if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-    std::cerr << "SDL couldn't initialize! SDL_ERROR: " << SDL_GetError() << std::endl;
-    return -1;
-  }
-  if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
-    std::cerr << "SDL_Image couldn't init!" << std::endl;
-    return -1;
-  }
-  graphics_window = SDL_CreateWindow("SpaceAttack!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, kScreenWidth, kScreenHeight, SDL_WINDOW_SHOWN);
-  // SDL_CreateWindow(name, windowx, windowy, width, height, options
-  if (graphics_window == NULL) {
-    std::cerr << "SDL couldn't initialize window! SDL_Error: " << SDL_GetError() << std::endl;
-    return -1;
-  }
-  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED);
-  SDL_SetRenderDrawColor(graphics_renderer, 0x00, 0x00, 0x00, 0xff);
-  Entity * ship; // Construct ship entity
-  ship = new Entity("ship.png");
+  Entity ship("ship.png"); // Construct ship entity
   std::vector<SDL_Rect> bombs(kMaxBombs);
   std::vector<bool> bomb_exist(kMaxBombs);
   int bombAmmo = kMaxBombs;
@@ -80,21 +78,35 @@ int main (int argc, char * argv[]) {
   SDL_Event event;
   float velocity = 2; // Set ship velocity
   const uint8_t * key_state = SDL_GetKeyboardState(nullptr); // Get address of keystate array and assign it to keyState pointer
-  ship->LoadImage(graphics_renderer); // Load ship image into memory
+  graphics_window = SDL_CreateWindow("SpaceAttack!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, kScreenWidth, kScreenHeight, SDL_WINDOW_SHOWN);
+  // SDL_CreateWindow(name, windowx, windowy, width, height, options
+  if (graphics_window == nullptr) {
+    std::cerr << "SDL couldn't initialize window! SDL_Error: " << SDL_GetError() << std::endl;
+    return -1;
+  }
+  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED);
+  std::vector<Text> bombs_text(kMaxBombs+1);
+  for (int i = 0; i < kMaxBombs+1; i++) {
+    bombs_text[i].color_ = {255, 255, 255, 255};
+    bombs_text[i].text_ = "Bombs: " + std::to_string(i);
+    bombs_text[i].LoadImage(graphics_renderer, font);
+  }
+  y_start = bombs_text[1].pos_.h;
+  SDL_SetRenderDrawColor(graphics_renderer, 0x00, 0x00, 0x00, 0xff);
+  ship.LoadImage(graphics_renderer, y_start); // Load ship image into memory
   bombsprite.LoadImage(graphics_renderer);
   star1sprite.LoadImage(graphics_renderer); // Load star1 image into memory
   star2sprite.LoadImage(graphics_renderer); // Load star2 image into memory
   for (int i = 0; i < kNumStars/2; i++) { // Loop for each star (NUM_OF_STARS is both types)
+    star1s[i] = star1sprite.pos_; // Set width and height for stars of type 1
+    star2s[i] = star2sprite.pos_; // Set width and height for stars of type 2
     star1s[i].x = random() % kScreenWidth; // Set random x value of range [0, SCREEN_WIDTH)
-    star1s[i].y = random() % kScreenHeight; // Set random y value of range [0, SCREEN_HEIGHT)
-    star1s[i].w = star1s[i].h = 1; // Set width and height for stars of type 1
+    star1s[i].y = (random() % (kScreenHeight - y_start)) + y_start; // Set random y value of range [0, SCREEN_HEIGHT)
     star2s[i].x = random() % kScreenWidth; // Set random x value of range [0, SCREEN_WIDTH)
-    star2s[i].y = random() % kScreenHeight; // Set random y value of range [0, SCREEN_HEIGHT)
-    star2s[i].w = star2s[i].h = 3; // Set width and height for stars of type 2
+    star2s[i].y = (random() % (kScreenHeight - y_start)) + y_start; // Set random y value of range [0, SCREEN_HEIGHT)
   }
   for (int i = 0; i < 5; i++) {
-    bombs[i].w = 8;
-    bombs[i].h = 9;
+    bombs[i] = bombsprite.pos_;
   }
   while (window_quit == false) {
     while (SDL_PollEvent( &event ) != 0) { // SDL_PollEvent automatically updates key_state array
@@ -105,43 +117,44 @@ int main (int argc, char * argv[]) {
     }
     if (key_state[UPKEY] && !key_state[DOWNKEY]) {
       // Get state of Up arrow key
-      ship->Move(0, -velocity);
+      ship.Move(0, -velocity);
     } else if (!key_state[UPKEY] && key_state[DOWNKEY]) {
-      ship->Move(0, velocity);
+      ship.Move(0, velocity);
     } else if (key_state[UPKEY] && key_state[DOWNKEY]) {
 
     }
     if (key_state[LEFTKEY] && key_state[RIGHTKEY]) {
 
     } else if (key_state[LEFTKEY] && !key_state[RIGHTKEY]) {
-      ship->Move(-velocity, 0);
+      ship.Move(-velocity, 0);
     } else if (!key_state[LEFTKEY] && key_state[RIGHTKEY]) {
-      ship->Move(velocity, 0);
+      ship.Move(velocity, 0);
     }
     if (key_state[SDL_SCANCODE_SPACE] && bombLag == 0) {
       for (int i = 0; i < bombs.size(); i++) {
 	if (!bomb_exist[i]) {
 	  bombAmmo--;
 	  bomb_exist[i] = true;
-	  bombs[i].y = ship->pos_.y - 18;
-	  bombs[i].x = ship->pos_.x + 3;
+	  bombs[i].y = ship.pos_.y - 18;
+	  bombs[i].x = ship.pos_.x + 3;
 	  bombLag = 12;
 	  break;
 	}
       }
     }
     SDL_RenderClear(graphics_renderer); // Cover screen in a black rectangle, effectively clearing the screen
+    bombs_text[bombAmmo].Display(graphics_renderer);
     for (int i = 0; i < kNumStars/2; i++) {
       star1s[i].y++; // Increase star type 1 y positions
       star2s[i].y++; // Increase star type 2 y positions
       if (star1s[i].y >= kScreenHeight) {
 	// Check if stars of type 1 have gone outside the screen
-	star1s[i].y = 0; // Reset y coordinates if so
+	star1s[i].y = y_start; // Reset y coordinates if so
 	star1s[i].x = random() % kScreenWidth;
       }
       if (star2s[i].y >= kScreenHeight) {
 	// Check if stars of type 2 have gone outside the screen
-	star2s[i].y = 0; // Reset y coordinates if so
+	star2s[i].y = y_start; // Reset y coordinates if so
 	star2s[i].x = random() % kScreenWidth;
       }
       star1sprite.Display(graphics_renderer, star1s[i]); // Display stars of type 1 using overload allowing for coordinate input
@@ -150,27 +163,28 @@ int main (int argc, char * argv[]) {
     for (int i = 0; i < bombs.size(); i++) {
       if (bomb_exist[i]) {
 	bombs[i].y-= 4;
-	if ((bombs[i].y + bombs[i].h) <= 0) {
+	if ((bombs[i].y) <= y_start) {
 	  bombs[i].y = 0;
 	  bombs[i].x = 0;
 	  bomb_exist[i] = false;
+	  bombAmmo++;
 	} else {
 	  bombsprite.Display(graphics_renderer, bombs[i]);
 	}
       }
     }
     if (bombLag > 0) bombLag--;
-    ship->Display(graphics_renderer); // Call entity::display() function for ship
+    ship.Display(graphics_renderer); // Call entity::display() function for ship
     SDL_RenderPresent(graphics_renderer); // Update screen based on changes
     SDL_Delay(20); // Wait 20 milliseconds, should blip 50 fps
   }
   SDL_RenderClear(graphics_renderer);
-  delete ship;
   SDL_DestroyWindow(graphics_window); // Destroy window; should free surface associated with screen.
   SDL_DestroyRenderer(graphics_renderer);
   graphics_window = nullptr;
   graphics_renderer = nullptr;
-  //SDL_Quit(); // Quit and unload SDL module
-  //IMG_Quit(); // Quit and unload SDL-image module
+  TTF_Quit(); // Quit and unload SDL-ttf module
+  IMG_Quit(); // Quit and unload SDL-image module
+  SDL_Quit(); // Quit and unload SDL module
   return 0;
 }
