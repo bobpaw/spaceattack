@@ -23,6 +23,7 @@
 
 const int kScreenWidth = 640;
 const int kScreenHeight = 400;
+const int kMaxLives = 10;
 const int kMaxBombs = 5; // Max number of fireable bombs
 
 int main (int argc, char * argv[]) {
@@ -46,6 +47,7 @@ int main (int argc, char * argv[]) {
   int DOWNKEY;
   int LEFTKEY;
   int RIGHTKEY;
+  int current_lives = kMaxLives; // Current amount of lives
   gengetopt_args_info args_info;
   if (cmdline_parser(argc, argv, &args_info) != 0) exit(EXIT_FAILURE);
   if (args_info.stars_given) kNumStars = args_info.stars_arg;
@@ -85,12 +87,19 @@ int main (int argc, char * argv[]) {
     std::cerr << "SDL couldn't initialize window! SDL_Error: " << SDL_GetError() << std::endl;
     return -1;
   }
-  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-  std::vector<Text> bombs_text(kMaxBombs+1);
+  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Use hardware acceleration and vsync
+  std::vector<Text> bombs_text(kMaxBombs+1); // kMaxBombs + 1 because I need text for when it's 0
   for (int i = 0; i < kMaxBombs+1; i++) {
-    bombs_text[i].color_ = {255, 255, 255, 255};
-    bombs_text[i].text_ = "Bombs: " + std::to_string(i);
-    bombs_text[i].LoadImage(graphics_renderer, font);
+    bombs_text[i].color_ = {255, 255, 255, 255}; // White (0xffffff) at max alpha
+    bombs_text[i].text_ = "Bombs: " + std::to_string(i); // ex: 'Bombs: 3'
+    bombs_text[i].LoadImage(graphics_renderer, font); // Create text from font and renderer
+  }
+  std::vector<Text> lives_text(kMaxLives+1);
+  for (int i = 0; i < kMaxLives+1; i++) {
+    lives_text[i].color_ = {255, 255, 255, 255};
+    lives_text[i].text_ = "Lives: " + std::to_string(i);
+    lives_text[i].LoadImage(graphics_renderer, font);
+    lives_text[i].pos_.x = kScreenWidth - lives_text[i].pos_.w - 5;
   }
   y_start = bombs_text[1].pos_.h;
   SDL_SetRenderDrawColor(graphics_renderer, 0x00, 0x00, 0x00, 0xff);
@@ -147,6 +156,7 @@ int main (int argc, char * argv[]) {
     }
     SDL_RenderClear(graphics_renderer); // Cover screen in a black rectangle, effectively clearing the screen
     bombs_text[bombAmmo].Display(graphics_renderer);
+    lives_text[current_lives].Display(graphics_renderer);
     for (int i = 0; i < kNumStars/2; i++) {
       star1s[i].y++; // Increase star type 1 y positions
       star2s[i].y++; // Increase star type 2 y positions
