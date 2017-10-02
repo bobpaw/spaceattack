@@ -85,7 +85,7 @@ int main (int argc, char * argv[]) {
     std::cerr << "SDL couldn't initialize window! SDL_Error: " << SDL_GetError() << std::endl;
     return -1;
   }
-  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED);
+  graphics_renderer = SDL_CreateRenderer(graphics_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   std::vector<Text> bombs_text(kMaxBombs+1);
   for (int i = 0; i < kMaxBombs+1; i++) {
     bombs_text[i].color_ = {255, 255, 255, 255};
@@ -180,7 +180,7 @@ int main (int argc, char * argv[]) {
     enemy.Display(graphics_renderer);
     ship.Display(graphics_renderer); // Call entity::display() function for ship
     SDL_RenderPresent(graphics_renderer); // Update screen based on changes
-    SDL_Delay(20); // Wait 20 milliseconds, should blip 50 fps
+    // Using VSYNC SDL_Delay(20); // Wait 20 milliseconds, should blip 50 fps
   }
   SDL_RenderClear(graphics_renderer);
   SDL_DestroyWindow(graphics_window); // Destroy window; should free surface associated with screen.
