@@ -3,7 +3,6 @@
 
 AC_PREREQ([2.69])
 AC_INIT([SpaceAttack], [2.0], [aidenpw@hotmail.com])
-AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([main.cc])
 AC_CONFIG_HEADERS([config.h])
 
@@ -34,4 +33,5 @@ AC_FUNC_MALLOC
 AC_CHECK_FUNCS([strtol])
 
 AC_CONFIG_FILES([Makefile])
+AM_INIT_AUTOMAKE
 AC_OUTPUT
