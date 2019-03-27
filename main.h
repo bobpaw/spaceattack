@@ -30,7 +30,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #ifndef HAVE_LIBSDL2_MIXER
-#print Not technically required
+// Not technically required
 #else
 #include <SDL2/SDL_mixer.h>
 #endif
