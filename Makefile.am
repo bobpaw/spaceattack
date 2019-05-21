@@ -1,5 +1,6 @@
 bin_PROGRAMS = movinga
-movinga_SOURCES = main.cc cmdline.c
-include_HEADERS = main.h entity.h cmdline.h text.h
+movinga_SOURCES = main.cc main.h cmdline.c cmdline.h text.cc text.h entity.cc entity.h
 EXTRA_DIST = ship.png bomb.png Star1.png Star2.png enemy.png
-movinga_CXXFLAGS = -std=c++11 -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -g
+
+cmdline.c cmdline.h: args.ggo
+	gengetopt < args.ggo
