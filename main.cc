@@ -40,7 +40,7 @@ int main (int argc, char * argv[]) {
     return -1;
   }
   TTF_Font * font = nullptr;
-  font = TTF_OpenFont("truetype/freefont/FreeSerif.ttf", 16);
+  font = TTF_OpenFont("data/truetype/freefont/FreeSerif.ttf", 16);
   int kNumStars = 300; // 150 of each type by default
   int y_start = 0;
   int UPKEY;
@@ -66,17 +66,17 @@ int main (int argc, char * argv[]) {
   std::random_device random;
   SDL_Window * graphics_window = nullptr; // Window object
   SDL_Renderer * graphics_renderer = nullptr; // Surface of screen
-  Entity ship("ship.png"); // Construct ship entity
-  Entity enemy("enemy.png"); // Enemy ship
+  Entity ship("data/ship.png"); // Construct ship entity
+  Entity enemy("data/enemy.png"); // Enemy ship
   std::vector<SDL_Rect> bombs(kMaxBombs);
   std::vector<bool> bomb_exist(kMaxBombs);
   int bombAmmo = kMaxBombs;
   int bombLag = 0;
-  Entity bombsprite("bomb.png");
+  Entity bombsprite("data/bomb.png");
   std::vector<SDL_Rect> star1s(kNumStars/2); // Create vector of star1 coordinates
   std::vector<SDL_Rect> star2s(kNumStars/2); // Create vector of star2 coordinates
-  Entity star1sprite("Star1.png"); // Construct object for star1 sprite
-  Entity star2sprite("Star2.png"); // Construct object for star2 sprite
+  Entity star1sprite("data/Star1.png"); // Construct object for star1 sprite
+  Entity star2sprite("data/Star2.png"); // Construct object for star2 sprite
   bool window_quit = false;
   SDL_Event event;
   float velocity = 2; // Set ship velocity
