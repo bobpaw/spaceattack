@@ -5,15 +5,9 @@
 \#*#
 *~
 
-# Autotools
-autom4te.cache/
-autoscan.log
-config.log
-.deps/
-Makefile.in
-Makefile
-config.h
-stamp-h*
-config.status
-config.cache
-config.h
+# CMake
+build/
+out/
+
+# Visual Studio
+.vs/
