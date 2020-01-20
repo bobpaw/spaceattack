@@ -1,7 +1,17 @@
 cmake_minimum_required(VERSION 3.8)
-project(movinga VERSION 2.0 LANGUAGES C CXX)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
+if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      CACHE STRING "")
+elseif(DEFINED ENV{VCPKG_INSTALLATION_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      CACHE STRING "")
+endif()
+
+project(SpaceAttack VERSION 2.0 LANGUAGES C CXX)
+set(PROJECT_SHORTNAME "movinga")
+set(PROJECT_STRING "${PROJECT_NAME} ${PROJECT_VERSION}")
+
 
 set(default_build_type "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -34,9 +44,33 @@ check_include_file(stdio.h HAVE_STDIO_H)
 if() # No standard library
 endif()
 
+if (CMAKE_TOOLCHAIN_FILE MATCHES ".*vcpkg.cmake$")
+  set(VCPKG_FOUND TRUE)
+else()
+  set(VCPKG_FOUND FALSE)
+endif()
+find_package(PkgConfig)
+
+if (VCPKG_FOUND)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(SDL2-image CONFIG REQUIRED)
 find_package(SDL2-mixer CONFIG REQUIRED)
 find_package(SDL2-ttf CONFIG REQUIRED)
+elseif (PKG_CONFIG_FOUND)
+pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2)
+pkg_check_modules(SDL2_image REQUIRED IMPORTED_TARGET SDL2_image)
+pkg_check_modules(SDL2_mixer REQUIRED IMPORTED_TARGET SDL2_mixer)
+pkg_check_modules(SDL2_ttf REQUIRED IMPORTED_TARGET SDL2_ttf)
+else()
+error("How am I expected to find SDL2")
+endif()
+
+configure_file("config.h.in" "config.h" ESCAPE_QUOTES @ONLY)
+
+if ($<VERSION_GREATER_EQUAL:"${CMAKE_VERSION}","3.12">)
+  add_compile_definitions(HAVE_CONFIG_H)
+else()
+  add_compile_options(-DHAVE_CONFIG_H)
+endif()
 
 add_subdirectory(src)
