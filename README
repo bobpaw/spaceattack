@@ -4,4 +4,4 @@ Use INSTALL for installation help.
 
 Read COPYING for license information.
 
-Required packages for install: Make libsdl-2.0.0 libsdl-image-2.0.0 libsdl-ttf-2.0.0
+Required packages for install: cmake>=3.8 libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev
