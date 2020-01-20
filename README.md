@@ -1,3 +1,4 @@
+## SpaceAttack [![Build Status](https://travis-ci.org/bobpaw/spaceattack.svg?branch=master)](https://travis-ci.org/bobpaw/spaceattack)
 Use the included manual for help on operation.
 
 Use INSTALL for installation help.
