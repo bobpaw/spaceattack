@@ -1,0 +1,70 @@
+# Project is written in C++ (defines some useful defaults)
+language: cpp
+
+cache: ccache
+
+# Save time by only getting the current repository status
+git:
+  depth: false
+
+# Test both clang and gcc
+compiler:
+  - gcc
+  - clang
+
+# Test both linux and osx
+os:
+  - linux
+  - osx
+  - windows
+
+env:
+  - GENERATOR="Ninja"
+  - GENERATOR="Unix Makefiles"
+
+# Install requirements with apt
+addons:
+  apt:
+    packages:
+    - libsdl2-dev
+    - libsdl2-image-dev
+    - libsdl2-ttf-dev
+    - libsdl2-mixer-dev
+    - cmake
+  homebrew:
+    packages:
+    - libsdl2-dev
+    - libsdl2-image-dev
+    - libsdl2-ttf-dev
+    - libsdl2-mixer-dev
+    - cmake
+    - ccache
+
+# Build Matrix
+matrix:
+  fast_finish: true
+  exclude:
+    - compiler: clang
+      env: GENERATOR="Ninja"
+    - os: windows
+      env: GENERATOR="Unix Makefiles"
+  allow_failures:
+    - os: windows
+
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+# " Fixes Visual Studio highlighting
+
+install:
+ - [ "${TRAVIS_OS_NAME}" = "windows" ] && choco install make
+
+before_script:
+  - cmake --version
+  - mkdir build && cd build
+
+# Actually check if it works
+script:
+  - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_BUILD_PARALLEL_LEVEL=2 -DCMAKE_VERBOSE_MAKEFILE=TRUE ..
+  - cmake --build .
+  - ctest -j2 -VV
