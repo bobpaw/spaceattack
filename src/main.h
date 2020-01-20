@@ -26,9 +26,9 @@
 #include <vector> // std::vector container type
 #include <random>
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #ifndef HAVE_LIBSDL2_MIXER
 // Not technically required
 #else

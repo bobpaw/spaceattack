@@ -23,8 +23,8 @@
 #include <iostream> // std::cerr
 #include <string> // std::string
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL.h>
+#include <SDL_ttf.h>
 
 #ifndef MOVINGA_TEXT_H_
 #define MOVINGA_TEXT_H_

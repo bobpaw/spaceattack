@@ -19,13 +19,14 @@
 */
 
 #include "main.h"
-#include "cmdline.h"
+// #include "cmdline.h"
 
 const int kScreenWidth = 640;
 const int kScreenHeight = 400;
 const int kMaxLives = 10;
 const int kMaxBombs = 5; // Max number of fireable bombs
 
+#undef main
 int main (int argc, char * argv[]) {
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
     std::cerr << "SDL couldn't initialize! SDL_ERROR: " << SDL_GetError() << std::endl;
@@ -41,14 +42,18 @@ int main (int argc, char * argv[]) {
   }
   TTF_Font * font = nullptr;
   font = TTF_OpenFont("data/truetype/freefont/FreeSerif.ttf", 16);
+  if (font == nullptr) {
+      std::cerr << "Unable to load TrueType font. SDL_ttf error:" << TTF_GetError() << std::endl;
+      return -1;
+  }
   int kNumStars = 300; // 150 of each type by default
   int y_start = 0;
-  int UPKEY;
-  int DOWNKEY;
-  int LEFTKEY;
-  int RIGHTKEY;
+  int UPKEY = SDL_SCANCODE_W;
+  int DOWNKEY = SDL_SCANCODE_S;
+  int LEFTKEY = SDL_SCANCODE_A;
+  int RIGHTKEY = SDL_SCANCODE_D;
   int current_lives = kMaxLives; // Current amount of lives
-  gengetopt_args_info args_info;
+  /* gengetopt_args_info args_info;
   if (cmdline_parser(argc, argv, &args_info) != 0) exit(EXIT_FAILURE);
   if (args_info.stars_given) kNumStars = args_info.stars_arg;
   if (args_info.use_arrows_flag) {
@@ -62,7 +67,7 @@ int main (int argc, char * argv[]) {
     LEFTKEY = SDL_SCANCODE_A;
     RIGHTKEY = SDL_SCANCODE_D;
   }
-  cmdline_parser_free(&args_info);
+  cmdline_parser_free(&args_info); */
   std::random_device random;
   SDL_Window * graphics_window = nullptr; // Window object
   SDL_Renderer * graphics_renderer = nullptr; // Surface of screen
@@ -193,8 +198,8 @@ int main (int argc, char * argv[]) {
     // Using VSYNC SDL_Delay(20); // Wait 20 milliseconds, should blip 50 fps
   }
   SDL_RenderClear(graphics_renderer);
-  SDL_DestroyWindow(graphics_window); // Destroy window; should free surface associated with screen.
   SDL_DestroyRenderer(graphics_renderer);
+  SDL_DestroyWindow(graphics_window); // Destroy window; should free surface associated with screen.
   graphics_window = nullptr;
   graphics_renderer = nullptr;
   TTF_Quit(); // Quit and unload SDL-ttf module

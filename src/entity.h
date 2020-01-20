@@ -23,10 +23,8 @@
 #include <iostream> // std::cerr
 #include <string> // std::string type
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 #ifndef MOVINGA_ENTITY_H_
 #define MOVINGA_ENTITY_H_
@@ -53,7 +51,7 @@ class Entity {
 
   Entity (std::string file) :
   x_(0.0), y_(0.0), y_start(0),
-  spritefile_(file), spritehandle_(nullptr) {
+      spritefile_(file), spritehandle_(nullptr), shadow_screenheight_{ 0 }, shadow_screenwidth_{ 0 } {
     pos_.x = 0; pos_.y = 0; pos_.w = 0; pos_.h = 0;
   }
 
@@ -76,6 +74,7 @@ class Entity {
     spritefile_ = old.spritefile_;
     SDL_DestroyTexture(spritehandle_);
     spritehandle_ = old.spritehandle_;
+    return *this;
   }
 };
 

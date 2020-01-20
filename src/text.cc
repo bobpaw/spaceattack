@@ -1,7 +1,7 @@
 #include "text.h"
 
 int Text::LoadImage (SDL_Renderer * renderer, TTF_Font * font) {
-  SDL_DestroyTexture(sprite_);
+  if (sprite_ != nullptr) SDL_DestroyTexture(sprite_);
   SDL_Surface * textsurface = TTF_RenderText_Solid(font, text_.c_str(), color_);
   if (textsurface == NULL) {
     std::cerr << "Unable to render text surface! SDL_ttf error: " << TTF_GetError() << std::endl;
@@ -19,9 +19,9 @@ int Text::LoadImage (SDL_Renderer * renderer, TTF_Font * font) {
 }
 
 int Text::Display (SDL_Renderer * renderer) {
-  SDL_RenderCopy(renderer, sprite_, nullptr, &pos_);
+  return SDL_RenderCopy(renderer, sprite_, nullptr, &pos_);
 }
 
 int Text::Display (SDL_Renderer * renderer, SDL_Rect destrect) {
-  SDL_RenderCopy(renderer, sprite_, NULL, &destrect);
+  return SDL_RenderCopy(renderer, sprite_, NULL, &destrect);
 }
