@@ -57,7 +57,7 @@ before_install:
 # " Fixes Visual Studio highlighting
 
 install:
- - [ "${TRAVIS_OS_NAME}" = "windows" ] && choco install make
+  - [ "${TRAVIS_OS_NAME}" = "windows" ] && choco install make
 
 before_script:
   - cmake --version
