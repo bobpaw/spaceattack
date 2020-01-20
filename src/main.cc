@@ -26,6 +26,7 @@ const int kScreenHeight = 400;
 const int kMaxLives = 10;
 const int kMaxBombs = 5; // Max number of fireable bombs
 
+#undef main
 int main (int argc, char * argv[]) {
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
     std::cerr << "SDL couldn't initialize! SDL_ERROR: " << SDL_GetError() << std::endl;
