@@ -41,7 +41,7 @@ addons:
     - ccache
 
 # Build Matrix
-matrix:
+jobs:
   fast_finish: true
   exclude:
     - compiler: clang
@@ -52,7 +52,7 @@ matrix:
     - os: windows
 
 install:
-  - [ "$TRAVIS_OS_NAME" = "windows" ] && choco install make
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install make; fi
 
 before_script:
   - cmake --version
