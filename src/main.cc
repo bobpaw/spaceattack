@@ -41,7 +41,7 @@ int main (int argc, char * argv[]) {
     return -1;
   }
   TTF_Font * font = nullptr;
-  font = TTF_OpenFont("data/truetype/freefont/FreeSerif.ttf", 16);
+  font = TTF_OpenFont("data/FreeSans.ttf", 16);
   if (font == nullptr) {
       std::cerr << "Unable to load TrueType font. SDL_ttf error:" << TTF_GetError() << std::endl;
       return -1;
